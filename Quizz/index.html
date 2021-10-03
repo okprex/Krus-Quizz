@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titel</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    
+  </head>
+  <body>
+      <div id= "next">
+        <img class="fk_img" id="next_btn" src="img/next.png" >
+      </div>
+      <span class="frage_Text" id="f_1">Testfrage ?</span>
+      <span class="antwort" id="a_1">Antwort 1</span> <span class="antwort" id="a_2">Antwort 2</span>
+      <span class="antwort" id="a_3">Antwort 3</span> <span class="antwort" id="a_4">Antwort 4</span>
+      <br>
+
+      <div id="frage_hinzufuegen">
+        <h3>Frage :</h3>
+        <input id="neue_frage" type="text">
+        <br>
+        <h3>Richtige Antwort :</h3>
+        <input id="antwort_1" type="text">
+        <h3>Falsche Antworten :</h3>
+        <input id="antwort_2" type="text">
+        <input id="antwort_3" type="text">
+        <input id="antwort_4" type="text">
+        <br>
+        <button id="frage_senden">Senden</button> 
+        <br>
+      </div>
+
+      <section id="fragenkatalog">
+        <h1>Fragenkatalog:</h1>
+        <ul id= "fk_li"></ul>
+        <button id="fk_save">speichern</button>
+        <button id="fk_load">laden</button>
+      </section>
+
+  </body>
+  <script language="javascript" type="text/javascript" src="Fragenkatalog.js" defer></script>
+  <script language="javascript" type="text/javascript" src="main.js" defer></script>
+</html>
