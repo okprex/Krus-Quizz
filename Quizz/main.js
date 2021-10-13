@@ -6,6 +6,8 @@
 let Quizz = {
 
     katalog : [],
+    right_anwser_position : 0,
+    picked_answer : 0,
 
     
     
@@ -128,19 +130,7 @@ let Quizz = {
                     document.querySelector("#a_2").innerHTML = Quizz.katalog[random_q].a2;
                     document.querySelector("#a_3").innerHTML = Quizz.katalog[random_q].a3;
                     document.querySelector("#a_4").innerHTML = Quizz.katalog[random_q].a4;
-
-                    let right = document.querySelector("#a_1");
-                    right.addEventListener("click", Quizz.right_answer);
-
-                    let false_1 = document.querySelector("#a_2");
-                    false_1.addEventListener("click", Quizz.false_answer)
-
-                    let false_2 = document.querySelector("#a_3");
-                    false_2.addEventListener("click", Quizz.false_answer)
-
-                    let false_3 = document.querySelector("#a_4");
-                    false_3.addEventListener("click", Quizz.false_answer);
-                break;
+                    this.right_anwser_position = 1;
 
                 case 2: 
                     document.querySelector("#f_1").innerHTML = Quizz.katalog[random_q].frage;
@@ -148,18 +138,8 @@ let Quizz = {
                     document.querySelector("#a_2").innerHTML = Quizz.katalog[random_q].a3;
                     document.querySelector("#a_3").innerHTML = Quizz.katalog[random_q].a2;
                     document.querySelector("#a_4").innerHTML = Quizz.katalog[random_q].a1;
+                    this.right_anwser_position = 4;
 
-                    let right_2 = document.querySelector("#a_4");
-                    right_2.addEventListener("click", Quizz.right_answer);
-
-                    let false_1_2 = document.querySelector("#a_3");
-                    false_1_2.addEventListener("click", Quizz.false_answer);
-
-                    let false_2_2 = document.querySelector("#a_2");
-                    false_2_2.addEventListener("click", Quizz.false_answer);
-
-                    let false_3_2 = document.querySelector("#a_1");
-                    false_3_2.addEventListener("click", Quizz.false_answer);
                 break;
                 
                 case 3:
@@ -168,18 +148,8 @@ let Quizz = {
                     document.querySelector("#a_2").innerHTML = Quizz.katalog[random_q].a1;
                     document.querySelector("#a_3").innerHTML = Quizz.katalog[random_q].a3;
                     document.querySelector("#a_4").innerHTML = Quizz.katalog[random_q].a4;
+                    this.right_anwser_position = 2;
 
-                    let right_3 = document.querySelector("#a_2");
-                    right_3.addEventListener("click", Quizz.right_answer);
-
-                    let false_1_3 = document.querySelector("#a_3");
-                    false_1_3.addEventListener("click", Quizz.false_answer);
-
-                    let false_2_3 = document.querySelector("#a_4");
-                    false_2_3.addEventListener("click", Quizz.false_answer);
-
-                    let false_3_3 = document.querySelector("#a_1");
-                    false_3_3.addEventListener("click", Quizz.false_answer);
                 break;
 
                 case 4:
@@ -188,59 +158,59 @@ let Quizz = {
                     document.querySelector("#a_2").innerHTML = Quizz.katalog[random_q].a4;
                     document.querySelector("#a_3").innerHTML = Quizz.katalog[random_q].a1;
                     document.querySelector("#a_4").innerHTML = Quizz.katalog[random_q].a2;
+                    this.right_anwser_position = 3;
 
-                    let right_4 = document.querySelector("#a_3");
-                    right_4.addEventListener("click", Quizz.right_answer);
-
-                    let false_1_4 = document.querySelector("#a_4");
-                    false_1_4.addEventListener("click", Quizz.false_answer);
-
-                    let false_2_4 = document.querySelector("#a_2");
-                    false_2_4.addEventListener("click", Quizz.false_answer);
-
-                    let false_3_4 = document.querySelector("#a_1");
-                    false_3_4.addEventListener("click",Quizz.false_answer);
                 break;
             }
-            
-
-
-
-        
-
-
-
-        //   document.querySelector("#f_1").innerHTML = Quizz.katalog[random_q].frage;
-        //   document.querySelector("#a_1").innerHTML = Quizz.katalog[random_q].a1;
-        //   document.querySelector("#a_2").innerHTML = Quizz.katalog[random_q].a2;
-        //   document.querySelector("#a_3").innerHTML = Quizz.katalog[random_q].a3;
-        //   document.querySelector("#a_4").innerHTML = Quizz.katalog[random_q].a4;
 
           
     },
 
-    false_answer() {
-        alert("Falsch!");
-        this.remove_click_listener();
-        Quizz.frage_anzeigen();
+    get_answer() {
+        document.querySelector("#a_1").addEventListener("click", e => {
+            this.picked_answer = 1;
+            this.check_answer();
+        });
+        document.querySelector("#a_2").addEventListener("click", e => {
+            this.picked_answer = 2;
+            this.check_answer();
+        });
+        document.querySelector("#a_3").addEventListener("click", e => {
+            this.picked_answer = 3;
+            this.check_answer();
+        });
+        document.querySelector("#a_4").addEventListener("click", e => {
+            this.picked_answer = 4;
+            this.check_answer();
+        });
     },
 
-    right_answer() {
+    check_answer() {
+        if(this.right_anwser_position == this.picked_answer) {
+            this.right_answer_picked();
+        } else {
+            this.false_answer_picked();
+        }
+    },
+
+    right_answer_picked() {
         alert("Richtig!");
-        this.remove_click_listener();
-        Quizz.frage_anzeigen();
     },
 
-    remove_click_listener() {
-        document.querySelector("#f_1").removeEventListener("click", Quizz.false_answer);
-        document.querySelector("#f_1").removeEventListener("click", Quizz.right_answer);
-        document.querySelector("#f_2").removeEventListener("click", Quizz.false_answer);
-        document.querySelector("#f_2").removeEventListener("click", Quizz.right_answer);
-        document.querySelector("#f_3").removeEventListener("click", Quizz.false_answer);
-        document.querySelector("#f_3").removeEventListener("click", Quizz.right_answer);
-        document.querySelector("#f_4").removeEventListener("click", Quizz.false_answer);
-        document.querySelector("#f_4").removeEventListener("click", Quizz.right_answer);
+    false_answer_picked() {
+        alert("Falsch!");
     },
+
+    // remove_click_listener() {
+    //     document.querySelector("#f_1").removeEventListener("click", Quizz.false_answer);
+    //     document.querySelector("#f_1").removeEventListener("click", Quizz.right_answer);
+    //     document.querySelector("#f_2").removeEventListener("click", Quizz.false_answer);
+    //     document.querySelector("#f_2").removeEventListener("click", Quizz.right_answer);
+    //     document.querySelector("#f_3").removeEventListener("click", Quizz.false_answer);
+    //     document.querySelector("#f_3").removeEventListener("click", Quizz.right_answer);
+    //     document.querySelector("#f_4").removeEventListener("click", Quizz.false_answer);
+    //     document.querySelector("#f_4").removeEventListener("click", Quizz.right_answer);
+    // },
 
     katalog_speichern() {
         let katalog_string = JSON.stringify(this.katalog);
@@ -291,4 +261,4 @@ if (Quizz.katalog.length = 0 && localStorage.getItem("fragen") != null) {
     fragenkatalog_aktualisieren();
 }
 
-
+Quizz.get_answer();
